@@ -83,19 +83,9 @@ def searchlistjs(request):
 
 
 def index(request):
-	#context_dict = {'boldmessage': "I am bold font from the context"}
 	context_dict = {}
-	#context_dict['a']=1000
 	context_dict['date'] = time.ctime
-	search_string = request.GET.get("text")
-	search_string2 = request.GET.get("text2")
-	html_string = '''		<h1>Hello %s & %s</h1>		'''%(search_string, search_string2)
-	#print request.GET
-	#return HttpResponse(html_string)										#To output a string on a page
-	context_dict['search_string'] = search_string
-#	list_dir = os.listdir(os.path.join(settings.STATIC_PATH, 'images'))
-#	context_dict['list_dir'] = list_dir
-
+	context_dict['pokedex'] = Pokedex.objects.all()
 	return render(request, 'search/index.html', context_dict)				#To output a page on browser
 
 '''
@@ -106,8 +96,8 @@ def random(request):
 	context_dict['list_dir'] = list_dir
 
 	return render(request, 'search/random.html', context_dict)
-'''
-'''
+
+
 def newIndex(request):
 	today_date = time.ctime()
 	context_dict = {}

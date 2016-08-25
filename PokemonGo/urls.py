@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'search.views.index', name='newIndex'),
     url(r'^pokemon$', 'search.views.index', name='index'),
-    url(r'^random$', 'search.views.random', name='random'),
+    #url(r'^random$', 'search.views.random', name='random'),
     url(r'^searchGET$', 'search.views.searchget', name='searchGET'),
     url(r'^searchPOST$', 'search.views.searchpost', name='searchPOST'),
     #url(r'^search/(\d+)$', 'search.views.search2', name='search2'),		#unnamed grouping
