@@ -49,6 +49,30 @@ def search2(request,foo):
 	return render(request, 'search/search.html', context_dict)				#To output a page on browser
 '''
 
+def edit(request, pokemon_id):
+	if request.method=='POST':
+		pokemon_name = request.POST.get('name')
+		pokemon_type = request.POST.get('type')
+		pokemon_image = request.POST.get('image')
+		p = Pokedex.objects.get_or_create(id=pokemon_id)[0]
+		p.pokemon_name = pokemon_name
+		p.pokemon_type = pokemon_type
+		p.pokemon_image = pokemon_image
+		p.save()
+		return HttpResponse('SAVED %s of type %s and imageurl %s'%(pokemon_name, pokemon_type, pokemon_image))
+	else:
+		context_dict = {}
+		matching_pokemon = 'N/A'
+		context_dict['pokemon_id'] = pokemon_id
+		context_dict['pokedex'] = Pokedex.objects.all()
+		for pokemon in Pokedex.objects.all():
+			if pokemon_id == str(pokemon.id):		#id created by sqlite when entering data into database
+				matching_pokemon = pokemon
+
+		context_dict['matching_pokemon']=matching_pokemon
+
+		return render(request, 'search/edit.html', context_dict)
+
 def searchget(request):
 	search_string = request.GET.get("searchstring") or ''
 	context_dict={}
@@ -81,7 +105,6 @@ def searchlistjs(request):
 
 	return render(request, 'search/searchLISTJS.html', context_dict)
 
-
 def index(request):
 	context_dict = {}
 	context_dict['date'] = time.ctime
@@ -96,7 +119,6 @@ def random(request):
 	context_dict['list_dir'] = list_dir
 
 	return render(request, 'search/random.html', context_dict)
-
 
 def newIndex(request):
 	today_date = time.ctime()

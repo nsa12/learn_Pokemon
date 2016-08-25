@@ -1,0 +1,19 @@
+{% extends "search/base.html" %}
+
+{% block content %}
+	
+	<p> Edit View for {{matching_pokemon.pokemon_name}}</p>
+	<img src='{{matching_pokemon.pokemon_image}}'>
+
+	<form method='POST' action='/edit/{{matching_pokemon.id}}'>
+		{% csrf_token %}
+		<div class='form_group'>
+			<input type='text' name='name' class='form-control' value='{{matching_pokemon.pokemon_name}}'>
+			<input type='text' name='type' class='form-control' value='{{matching_pokemon.pokemon_type}}'>
+			<input type='text' name='image' class='form-control' value='{{matching_pokemon.pokemon_image}}'>
+		</div>
+		<br>
+		<button type='submit' class='btn btn-success'>Submit</button>
+	</form>
+
+{% endblock content %}

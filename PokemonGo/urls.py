@@ -13,8 +13,9 @@ urlpatterns = patterns('',
     url(r'^searchGET$', 'search.views.searchget', name='searchGET'),
     url(r'^searchPOST$', 'search.views.searchpost', name='searchPOST'),
     #url(r'^search/(\d+)$', 'search.views.search2', name='search2'),		#unnamed grouping
-    #url(r'^search/(?P<foo>\d+)', 'search.views.search2', name='search2'),
+    #url(r'^search/(?P<foo>\d+)', 'search.views.search2', name='search2'),  #named grouping
     #url(r'^pokedex$', 'search.views.newIndex', name='newIndex'),
     url(r'^searchREDIRECT/(?P<search_string>[\*\w\-]+)/$', 'search.views.searchredirect', name='searchredirect'),
     url(r'^searchLISTJS$', 'search.views.searchlistjs', name='searchLISTJS'),
+    url(r'^edit/(\d+)', 'search.views.edit', name="edit"),
 )

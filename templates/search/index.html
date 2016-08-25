@@ -11,21 +11,8 @@
 	{% for pokemon in pokedex %}
 		<p>{{pokemon.pokemon_name}}:
 			type {{pokemon.pokemon_type}}</p>
-	<img src='{{pokemon.pokemon_image}}'>
+		<img src='{{pokemon.pokemon_image}}'>
+		<a href='/edit/{{pokemon.id}}'>Edit</a>
 	{% endfor %}
-
-	{% for i in '123' %}
-		<!--div class="row">
-		{% for j in '123' %}
-			<div class= 'col-md-4'>
-			<img src= 'static/images/{{list.dir.0}}'>
-			</div>
-		{% endfor %}
-		</div>
-	{% endfor %}
-
-	<code>
-		{{list_dir}}
-	</code -->
 
 {% endblock content %}
