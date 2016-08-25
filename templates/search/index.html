@@ -1,0 +1,34 @@
+{% extends "search/base.html" %}
+
+{% block head %}
+
+	<title>
+		Hello {{date}}
+	</title>
+
+{% endblock head %}
+
+{% block content %}
+
+	<h1> You searched for {{search_string}} </h1>
+	
+	{% for item in list_dir %}
+		<a href='static/images/{{item}}'>{{item}}</a>
+		<br>
+	{% endfor %}
+
+	{% for i in '123' %}
+		<div class="row">
+		{% for j in '123' %}
+			<div class= 'col-md-4'>
+				<img src= 'static/images/{{list.dir.0}}'>
+			</div>
+		{% endfor %}
+		</div>
+	{% endfor %}
+
+	<!-- code>
+		{{list_dir}}
+	</code -->
+
+{% endblock content %}

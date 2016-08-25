@@ -1,0 +1,46 @@
+<!--{% extends "search/base.html" %}-->
+
+{% block head %}
+	<title> {{date}} </title>
+	<style type="text/css">
+		img{width: 60px;}
+	</style>
+{% endblock head %}
+
+{% block form %}
+      <form onsubmit="return false;" class="navbar-form navbar-left">
+
+        <div class="form-group">
+          <input id='search_string' type="text" name='searchstring' class="form-control" placeholder="Search">
+        </div>
+        <button type="button" onclick='search()' class="btn btn-default">Submit</button>
+      
+      </form>
+{% endblock %}
+
+{% block content %}
+
+	<h1> You searched for {{search_string}} </h1>
+
+	<p> Results </p>
+
+	{% for item in result_arr %}
+		<p>{{item.name}}</p>
+		<img src='{{item.image_url}}'>
+	{% endfor %}
+
+{% endblock content %}
+
+{% block scripts %}
+
+	<script type="text/javascript">
+		
+		function search(){
+			//alert($('#search_string').val());
+			search_string = $('#search_string').val();
+			window.location.href='/searchREDIRECT/' + search_string;
+		};
+
+	</script>
+
+{% endblock scripts %}

@@ -1,0 +1,144 @@
+<!--{% extends "search/base.html" %}-->
+
+{% block head %}
+	<title> ListJS Search </title>
+	<style type="text/css">
+		img{width: 100px;}
+		h2 {
+	  font-family:sans-serif;
+	}
+	.list {
+	  font-family:sans-serif;
+	  margin:0;
+	  padding:20px 0 0;
+	}
+	.list > li {
+	  display:block;
+	  background-color: #eee;
+	  padding:10px;
+	  box-shadow: inset 0 1px 0 #fff;
+	}
+	.avatar {
+	  max-width: 150px;
+	}
+	img {
+	  max-width: 100%;
+	}
+	h3 {
+	  font-size: 16px;
+	  margin:0 0 0.3rem;
+	  font-weight: normal;
+	  font-weight:bold;
+	}
+	p {
+	  margin:0;
+	}
+
+	input {
+	  border:solid 1px #ccc;
+	  border-radius: 5px;
+	  padding:7px 14px;
+	  margin-bottom:10px
+	}
+	input:focus {
+	  outline:none;
+	  border-color:#aaa;
+	}
+	.sort {
+	  padding:8px 30px;
+	  border-radius: 6px;
+	  border:none;
+	  display:inline-block;
+	  color:#fff;
+	  text-decoration: none;
+	  background-color: #28a8e0;
+	  height:30px;
+	}
+	.sort:hover {
+	  text-decoration: none;
+	  background-color:#1b8aba;
+	}
+	.sort:focus {
+	  outline:none;
+	}
+	.sort:after {
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-bottom: 5px solid transparent;
+	  content:"";
+	  position: relative;
+	  top:-10px;
+	  right:-5px;
+	}
+	.sort.asc:after {
+	  width: 0;
+	  height: 0;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  border-top: 5px solid #fff;
+	  content:"";
+	  position: relative;
+	  top:13px;
+	  right:-5px;
+	}
+	</style>
+{% endblock head %}
+
+{% block form %}
+      <form onsubmit="return false;" class="navbar-form navbar-left">
+
+        <div class="form-group">
+          <input id='search_string' type="text" name='searchstring' class="form-control" placeholder="Search">
+        </div>
+        <button type="button" onclick='search()' class="btn btn-default">Submit</button>
+      
+      </form>
+{% endblock %}
+
+{% block content %}
+
+	<div id="users">
+	  <input class="search" placeholder="Search" />
+	  <button class="sort" data-sort="name">
+	    Sort by name
+	  </button>
+
+	  <ul class="list">
+	  {% for pokemon in result_arr %}
+
+		<li>
+	      <h3 class="name">{{pokemon.name}}</h3>
+	      <p class="born"><img src="{{pokemon.image_url}}"></p>
+	    </li>
+	  
+	  {% endfor %}
+
+	  </ul>
+
+	</div>
+
+{% endblock content %}
+
+{% block scripts %}
+
+	<script src="http://listjs.com/no-cdn/list.js"></script>
+
+	<script type="text/javascript">
+
+		function search(){
+			//alert($('#search_string').val());
+			search_string = $('#search_string').val();
+			window.location.href='/searchREDIRECT/' + search_string;
+		};
+
+		var options = {
+  			valueNames: [ 'name', 'born' ]
+		};
+
+		var userList = new List('users', options);
+
+	</script>
+
+{% endblock scripts %}
