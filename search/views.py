@@ -35,6 +35,7 @@ def search_pokemon(search_string, result_type='arr'):
 	
 	return result_arr
 
+'''
 def search2(request,foo):
 	search_string = foo or 1
 	list_dir = os.listdir(os.path.join(settings.STATIC_PATH, 'images'))
@@ -46,6 +47,7 @@ def search2(request,foo):
 	context_dict['search_string']=search_string
 	context_dict['result_arr']=result_arr
 	return render(request, 'search/search.html', context_dict)				#To output a page on browser
+'''
 
 def searchget(request):
 	search_string = request.GET.get("searchstring") or ''
@@ -76,7 +78,7 @@ def searchlistjs(request):
 	
 	context_dict={}
 	context_dict['result_arr']=search_pokemon('*', result_type='dict')
-	
+
 	return render(request, 'search/searchLISTJS.html', context_dict)
 
 
@@ -91,11 +93,12 @@ def index(request):
 	#print request.GET
 	#return HttpResponse(html_string)										#To output a string on a page
 	context_dict['search_string'] = search_string
-	list_dir = os.listdir(os.path.join(settings.STATIC_PATH, 'images'))
-	context_dict['list_dir'] = list_dir
+#	list_dir = os.listdir(os.path.join(settings.STATIC_PATH, 'images'))
+#	context_dict['list_dir'] = list_dir
 
 	return render(request, 'search/index.html', context_dict)				#To output a page on browser
 
+'''
 def random(request):
 	list_dir = os.listdir(os.path.join(settings.STATIC_PATH, 'images'))
 	shuffle(list_dir)
@@ -103,7 +106,8 @@ def random(request):
 	context_dict['list_dir'] = list_dir
 
 	return render(request, 'search/random.html', context_dict)
-
+'''
+'''
 def newIndex(request):
 	today_date = time.ctime()
 	context_dict = {}
@@ -114,3 +118,4 @@ def newIndex(request):
 	context_dict['pokedex']=Pokedex.objects.all()
 
 	return render(request, 'search/newIndex.html', context_dict) 
+'''
