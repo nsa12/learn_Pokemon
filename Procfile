@@ -1,1 +1,1 @@
-web: gunicorn pokemonGo.wsgi
+web: gunicorn PokemonGo.wsgi
