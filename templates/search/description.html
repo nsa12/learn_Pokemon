@@ -1,0 +1,16 @@
+<!--{% extends "search/base.html" %}-->
+
+{% block head %}
+	<title> {{date}} </title>
+	<style type='text/css'>
+		img{ width: 350 px; }
+	</style>
+{% endblock head %}
+
+{% block content %}
+
+	<h1> You searched for #{{pokemon.id}} {{pokemon.pokemon_name}}</h1>
+
+	<img src="{{pokemon.pokemon_image}}">
+
+{% endblock content %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import time
 
@@ -34,20 +34,6 @@ def search_pokemon(search_string, result_type='arr'):
 				result_arr.append(data_dict)
 	
 	return result_arr
-
-'''
-def search2(request,foo):
-	search_string = foo or 1
-	list_dir = os.listdir(os.path.join(settings.STATIC_PATH, 'images'))
-	result_arr = []
-	for file_name in list_dir:
-		if search_string in file_name:
-			result_arr.append(file_name)
-	context_dict={}
-	context_dict['search_string']=search_string
-	context_dict['result_arr']=result_arr
-	return render(request, 'search/search.html', context_dict)				#To output a page on browser
-'''
 
 def edit(request, pokemon_id):
 	if request.method=='POST':
@@ -108,8 +94,82 @@ def searchlistjs(request):
 def index(request):
 	context_dict = {}
 	context_dict['date'] = time.ctime
-	context_dict['pokedex'] = Pokedex.objects.all()
+	n = 10
+	try:
+		page_id = int(request.GET.get('page') or '1')
+	except ValueError:
+		page_id = 1
+	if page_id > 150/n:
+		page_id = 150/n
+	context_dict['page'] = page_id
+	data_arr = Pokedex.objects.all()
+	try:
+		context_dict['pokedex'] = data_arr[(page_id-1)*n : (page_id)*n]
+	except AssertionError:
+		context_dict['pokedex'] = data_arr[:n]
+		page_id=1
+	context_dict['prev'] = page_id-1
+	context_dict['next'] = page_id+1
+	#context_dict['iter_arr'] = range(1,150/n+1)
+	context_dict['iter_arr'] = range(max(1,page_id-3),min(page_id+4,15))
 	return render(request, 'search/index.html', context_dict)				#To output a page on browser
+
+def index2(request, page_id):
+	context_dict = {}
+	context_dict['date'] = time.ctime
+	n = 10
+	try:
+		#page_id = int(request.GET.get('page') or '1')
+		page_id = int(page_id)
+	except ValueError:
+		page_id = 1
+	if page_id > 150/n:
+		page_id = 150/n
+	context_dict['page'] = page_id
+	data_arr = Pokedex.objects.all()
+	try:
+		context_dict['pokedex'] = data_arr[(page_id-1)*n : (page_id)*n]
+	except AssertionError:
+		context_dict['pokedex'] = data_arr[:n]
+		page_id=1
+	context_dict['prev'] = page_id-1
+	context_dict['next'] = page_id+1
+	#context_dict['iter_arr'] = range(1,150/n+1)
+	context_dict['iter_arr'] = range(max(1,page_id-3), min(page_id+4, 16))
+	return render(request, 'search/index.html', context_dict)				#To output a page on browser
+
+def search_db(search_string):
+	result_arr = []
+	for pokemon in Pokedex.objects.all():
+		if pokemon.pokemon_name.lower().startswith(search_string.lower()):
+			result_arr.append(pokemon)
+
+	return result_arr
+
+def short_url(request, pokemon_id):
+	try:
+		pokemon = Pokedex.objects.get(id=pokemon_id)
+	except:
+		return redirect('/pokemon/156/Oddish')
+	return redirect('/pokemon/%s/%s'%(pokemon_id, pokemon.pokemon_name))
+
+def description(request, pokemon_id, pokemon_name):
+	#pokemon_image = search_pokemon(pokemon_name)[0][1]		#Because this is a nested list- returns array of arrays
+	#pokemon_image = search_db(pokemon_name)[0].pokemon_image
+	try:
+		pokemon = Pokedex.objects.get(id=pokemon_id, pokemon_name = pokemon_name)
+	except:
+		try:
+			pokemon = Pokedex.objects.get(id=pokemon_id)
+		except:
+			return redirect('/pokemon/156/Oddish')
+		return redirect('/pokemon/%s/%s'%(pokemon_id, pokemon.pokemon_name))
+	context_dict = {}
+	#context_dict['pokemon_id'] = pokemon_id
+	#context_dict['pokemon_name'] = pokemon_name
+	#context_dict['pokemon_image'] = pokemon_image
+	context_dict['pokemon'] = pokemon
+	return render(request, 'search/description.html', context_dict)
 
 '''
 def random(request):
@@ -130,4 +190,17 @@ def newIndex(request):
 	context_dict['pokedex']=Pokedex.objects.all()
 
 	return render(request, 'search/newIndex.html', context_dict) 
+
+def search2(request,foo):
+	search_string = foo or 1
+	list_dir = os.listdir(os.path.join(settings.STATIC_PATH, 'images'))
+	result_arr = []
+	for file_name in list_dir:
+		if search_string in file_name:
+			result_arr.append(file_name)
+	context_dict={}
+	context_dict['search_string']=search_string
+	context_dict['result_arr']=result_arr
+	return render(request, 'search/search.html', context_dict)				#To output a page on browser
+
 '''
