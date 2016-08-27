@@ -13,8 +13,7 @@
 	{% for pokemon in pokedex %}
 		<p>{{pokemon.pokemon_name}}:
 			type {{pokemon.pokemon_type}}</p>
-		<img src='{{pokemon.pokemon_image}}'>
-		<a href='/edit/{{pokemon.id}}'>Edit</a>
+		<a href='/edit/{{pokemon.id}}'><img src='{{pokemon.pokemon_image}}'></a>
 	{% endfor %}
 
 	<nav aria-label='Page navigation'>

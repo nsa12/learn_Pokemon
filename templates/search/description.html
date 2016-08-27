@@ -7,6 +7,37 @@
 	</style>
 {% endblock head %}
 
+{%block meta %}
+
+	<meta itemprop="image" content="{{pokemon.pokemon_image}}">
+
+	<meta property="og:title" content="{{pokemon.pokemon_name}}"/>
+	<meta property="og:description" content=""/>
+	<meta property="og:image" content="{{pokemon.pokemon_image}}"/> 
+	<meta property="og:site_name" content="http://protected-everglades-37536.herokuapp.com/"/> 
+
+	<meta property="og:url" content="http://protected-everglades-37536.herokuapp.com/{{pokemon.id}}/{{pokemon.pokemon_name}}" />
+	<meta property="article:author" content="wwww.facebook.com/Navjot.Singh.12" />
+	<meta property="article:publisher" content="wwww.facebook.com/Navjot.Singh.12"/>
+
+	<!--meta property='og:video' content=' '/>
+	<meta property='og:video:height' content=' '/>
+	<meta property='og:video:type' content=' '/>
+	<meta property='og:video:width' content=' '/>
+	<meta property='og:type' content=' '/>
+
+	<meta name="twitter:card" content=" " />
+	<meta name="twitter:site" content=" " />
+	<meta name="twitter:title" content=" " /-->
+	<!-- <meta name="twitter:description" content="" /> >
+	<meta name="twitter:description" content=" " />
+	<meta name="twitter:image" content=" " />
+					
+	<meta name="viewport" content="width=320, initial-scale=1"-->
+
+
+{% endblock %}
+
 {% block content %}
 
 	<h1> You searched for #{{pokemon.id}} {{pokemon.pokemon_name}}</h1>
