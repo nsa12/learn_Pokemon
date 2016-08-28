@@ -26,14 +26,12 @@
 	<meta property='og:video:width' content=' '/>
 	<meta property='og:type' content=' '/-->
 
-	<meta name="twitter:card" content=" Pokemon Information " />
-	<meta name="twitter:site" content=" http://protected-everglades-37536.herokuapp.com/" />
+	<meta name="twitter:card" content=" Pokemon_Information " />
+	<meta name="twitter:site" content=" @zing521 " />
 	<meta name="twitter:title" content=" {{pokemon.pokemon_name}} #{{pokemon.id}} " />
-	<meta name="twitter:description" content=" Pokedex for searching pokemon developed by Navjot Singh " />
+    <meta name="twitter:text" content=" Some text about {{pokemon.pokemon_name}} " />
+	<meta name="twitter:description" content=" More information about {{pokemon.pokemon_name}} " />
 	<meta name="twitter:image" content="{{pokemon.pokemon_image}}" />
-					
-	<meta name="viewport" content="width=320, initial-scale=1">
-
 
 {% endblock %}
 
@@ -46,9 +44,15 @@
 			<img src="{{pokemon.pokemon_image}}">
 		</div>
 		<div class='col-md-6'>
-			<button>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}">Share on Facebook!</a>
-			</button>
+				<a target='_blank' href="https://www.facebook.com/sharer/sharer.php?u=https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}">
+				<button class='btn btn-success'>Share on Facebook!</button></a>
+
+				<a target='_blank' href="https://twitter.com/home?status=Yo check dis out mahn! https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}"><button class='btn btn-warning'>Tweet it!</button></a>
+				
+				<a target='_blank' href="https://plus.google.com/share?url=https%3A//protected-everglades-37536.herokuapp.com/{{pokemon.id}}/{{pokemon.pokemon_name}}"><button class='btn btn-success'>Share on Google+!</button></a>
+				
+				<a target='_blank' href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//protected-everglades-37536.herokuapp.com/{{pokemon.id}}/{{pokemon.pokemon_name}}&title=My%20Pokedex&summary=Poke%20Poke&source=Pokemonnnnnnnn"><button class='btn btn-primary'>Put on Linked In!</button></a>
+		
 		</div>
 	</div>
 
