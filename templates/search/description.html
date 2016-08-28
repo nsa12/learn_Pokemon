@@ -28,7 +28,7 @@
 
 	<meta name="twitter:card" content=" Pokemon Information " />
 	<meta name="twitter:site" content=" http://protected-everglades-37536.herokuapp.com/" />
-	<meta name="twitter:title" content=" {{pokemon.pokemon_name}} #{{pokemon.pokemon_id}} " />
+	<meta name="twitter:title" content=" {{pokemon.pokemon_name}} #{{pokemon.id}} " />
 	<meta name="twitter:description" content=" Pokedex for searching pokemon developed by Navjot Singh " />
 	<meta name="twitter:image" content="{{pokemon.pokemon_image}}" />
 					
@@ -41,6 +41,15 @@
 
 	<h1> You searched for #{{pokemon.id}} {{pokemon.pokemon_name}}</h1>
 
-	<img src="{{pokemon.pokemon_image}}">
+	<div class='row'>
+		<div class='col-md-6'>
+			<img src="{{pokemon.pokemon_image}}">
+		</div>
+		<div class='col-md-6'>
+			<button>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}">Share on Facebook!</a>
+			</button>
+		</div>
+	</div>
 
 {% endblock content %}
