@@ -55,8 +55,24 @@
 				<br>
 				<a target='_blank' href='mailto:singh_navjot75@yahoo.ca?&cc=singh.navjot12@gmail.com&subject=Some Error Mayne. Look after it.&body=Dikkat%20hai%20be%20yahan-https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}%0ATheek%20kar%20isko.'><button class='btn btn-success'>Report Bug.</button></a>
 				<br>
-				<a target='_blank' href='whatsapp://send?text=Hi there check this out! https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}'><button class='btn btn-warning'>Share on Whatsapp!</button></a>
+				<a target='_blank' id='whatsapp' href='whatsapp://send?text=Hi there check this out! https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}'><button class='btn btn-warning btn-lg'>Share on Whatsapp!</button></a>
 		</div>
 	</div>
 
 {% endblock content %}
+
+{% block scripts %}
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+
+	<script type="text/javascript">
+		$(document).ready(function(){			//This function is called as soon as the page is loaded.
+			alert(navigator.userAgent);
+			if (navigator.userAgent.match('Android') == null) {
+				//user is on browser
+				$('#whatsapp').hide();
+				//document.getElementById('whatsapp').style.display = 'none';
+			}
+		});
+	</script>
+
+{% endblock scripts %}
