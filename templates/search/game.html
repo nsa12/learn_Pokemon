@@ -12,11 +12,11 @@
 	<meta itemprop="image" content="{{pokemon.pokemon_image}}">
 
 	<meta property="og:title" content="Pokemon Game"/>
-	<meta property="og:description" content="Game about guessing pokemon under 45 seconds!"/>
+	<meta property="og:description" content="Game about guessing pokemon under 15 seconds!"/>
 	<meta property="og:image" content="{{pokemon.pokemon_image}}"/> 
-	<meta property="og:site_name" content="http://protected-everglades-37536.herokuapp.com/"/> 
+	<meta property="og:site_name" content="http://fast-fjord-25866.herokuapp.com/"/> 
 
-	<meta property="og:url" content="http://protected-everglades-37536.herokuapp.com/game" />
+	<meta property="og:url" content="fast-fjord-25866.herokuapp.com/game" />
 	<meta property="article:author" content="wwww.facebook.com/Navjot.Singh.12" />
 	<meta property="article:publisher" content="wwww.facebook.com/Navjot.Singh.12"/>
 
@@ -54,11 +54,11 @@
 
 			<h3>Share Score!</h3>
 
-		  	<a target='_blank' href="https://www.facebook.com/sharer/sharer.php?u=https%3A//fast-fjord-25866.herokuapp.com/game"><img src="/static/facebook.png" width=50px></a>
+		  	<a target='_blank' href="https://www.facebook.com/sharer/sharer.php?u=https%3A//fast-fjord-25866.herokuapp.com/game"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/2000px-F_icon.svg.png" width=50px></a>
 			<br>
-			<a target='_blank' href="https://twitter.com/home?status=Hey guys, I played this cool pokemon game and scored {{score}} points! Check it out- https%3A//fast-fjord-25866.herokuapp.com/game"><img src="/static/twitter.png" width=50px></a>
+			<a target='_blank' href="https://twitter.com/home?status=Hey guys, I played this cool pokemon game and scored {{score}} points! Check it out- https%3A//fast-fjord-25866.herokuapp.com/game"><img src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/512/Twitter-icon.png" width=50px></a>
 			<br>
-			<a target='_blank' id='whatsapp' href='whatsapp://send?text=Hey mate! Check out this pokemon game! I scored {{score}} points! Challenge accepted? https%3A//fast-fjord-25866.herokuapp.com/game'><img src="/static/whatsapp.png" width=50px></a>
+			<a target='_blank' id='whatsapp' href='whatsapp://send?text=Hey mate! Check out this pokemon game! I scored {{score}} points! Challenge accepted? https%3A//fast-fjord-25866.herokuapp.com/game'><img src="http://icons.iconarchive.com/icons/dtafalonso/android-l/512/WhatsApp-icon.png" width=50px></a>
 			<br>
 			<a target='_blank' href='mailto:singh_navjot75@yahoo.ca?&cc=singh.navjot12@gmail.com&subject=Some Error Mayne. Look after it.&body=Dikkat%20hai%20be%20yahan-https%3A//fast-fjord-25866.herokuapp.com/game%0ATheek%20kar%20isko.'><button class='btn btn-warning'>Report Bug.</button></a>
 		</div>
@@ -78,10 +78,14 @@
 
 			if (userAnswer == correctAnswer && parseInt($('#countdown').text(),10)>0){
 				document.getElementById('ans').value = 1
-				var temp = {{score}} + 1;
+				var temp = {{score}} + 1 + parseInt($('#countdown').text(),10);
 				document.getElementById('score').value = temp;
-				alert('Correct Answer! Score:' + temp);
+				alert('Correct Answer! Score: ' + temp);
 				document.forms['gameboy'].submit();
+			}
+			else if (parseInt($('#countdown').text(),10) == 0 && document.getElementById('ans').value == 1){
+				document.getElementById('ans').value = 0;
+				alert('Time\'s up! The correct answer was {{pokemon.pokemon_name}}');
 			}
 			else{
 				document.getElementById('ans').value = 0;
