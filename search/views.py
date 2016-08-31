@@ -5,7 +5,7 @@ import time
 import os
 from django.conf import settings
 
-from random import shuffle
+from random import randint, shuffle
 
 from search.models import Pokedex
 
@@ -15,6 +15,14 @@ pokemon_data = {"Bulbasaur":"http://img.pokemondb.net/artwork/bulbasaur.jpg","Iv
 
 def oddish(request):
 	return render(request, 'search/oddish.html')
+
+def game(request):
+	context_dict = {}
+	pokemon_arr = Pokedex.objects.all()
+	random_number = randint(0, len(pokemon_arr)-1)
+	random_pokemon = pokemon_arr[random_number]
+	context_dict['pokemon'] = random_pokemon
+	return render(request, 'search/game.html', context_dict)
 
 def search_pokemon(search_string, result_type='arr'):
 	result_arr = []

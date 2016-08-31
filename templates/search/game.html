@@ -1,0 +1,73 @@
+<!--{% extends "search/base.html" %}-->
+
+{% block head %}
+	<title> {{date}} </title>
+	<style type='text/css'>
+		img{ width: 350 px; }
+	</style>
+{% endblock head %}
+
+{% block meta %}
+
+	<meta itemprop="image" content="{{pokemon.pokemon_image}}">
+
+	<meta property="og:title" content="{{pokemon.pokemon_name}}"/>
+	<meta property="og:description" content="Pokemon Search Database"/>
+	<meta property="og:image" content="{{pokemon.pokemon_image}}"/> 
+	<meta property="og:site_name" content="http://protected-everglades-37536.herokuapp.com/"/> 
+
+	<meta property="og:url" content="http://protected-everglades-37536.herokuapp.com/{{pokemon.id}}/{{pokemon.pokemon_name}}" />
+	<meta property="article:author" content="wwww.facebook.com/Navjot.Singh.12" />
+	<meta property="article:publisher" content="wwww.facebook.com/Navjot.Singh.12"/>
+
+	<!--meta property='og:video' content=' '/>
+	<meta property='og:video:height' content=' '/>
+	<meta property='og:video:type' content=' '/>
+	<meta property='og:video:width' content=' '/>
+	<meta property='og:type' content=' '/-->
+
+	<meta name="twitter:card" content=" Pokemon_Information " />
+	<meta name="twitter:site" content=" @zing521 " />
+	<meta name="twitter:title" content=" {{pokemon.pokemon_name}} #{{pokemon.id}} " />
+    <meta name="twitter:text" content=" Some text about {{pokemon.pokemon_name}} " />
+	<meta name="twitter:description" content=" More information about {{pokemon.pokemon_name}} " />
+	<meta name="twitter:image" content="{{pokemon.pokemon_image}}" />
+
+{% endblock %}
+
+{% block content %}
+
+	<h3>What's the name of this Pokemon?</h3>
+	<br>
+	<img src="{{pokemon.pokemon_image}}">
+	<br>
+	<form>
+		<div class="form-group">
+
+			<input type="text" class="form-control" id="answer" placeholder="For your answer, capitalize only the first letter- rest of the word should be in lowercase">
+		</div>
+	  	<br>
+	  	<button type="Button" onclick="check()" class="btn btn-primary">Submit!</button>
+  	</form>
+
+{% endblock content %}
+
+{% block scripts %}
+
+	<script type="text/javascript">
+		
+		function check(){
+			var userAnswer = $('#answer').val();
+			userAnswer = userAnswer.toLowerCase();
+			correctAnswer = "{{pokemon.pokemon_name}}".toLowerCase();
+			if (userAnswer == correctAnswer){
+				alert('Correct Answer!');
+				document.location.reload();
+			}
+			else{
+				alert('Incorrect Answer! Try Again');
+			}
+		};
+	</script>
+
+{% endblock scripts %}
