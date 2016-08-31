@@ -54,13 +54,13 @@
 
 			<h3>Share Score!</h3>
 
-		  	<a target='_blank' href="https://www.facebook.com/sharer/sharer.php?u=https%3A//protected-everglades-37536.herokuapp.com/game"><img src="/static/facebook.png" width=50px></a>
+		  	<a target='_blank' href="https://www.facebook.com/sharer/sharer.php?u=https%3A//fast-fjord-25866.herokuapp.com/game"><img src="/static/facebook.png" width=50px></a>
 			<br>
-			<a target='_blank' href="https://twitter.com/home?status=Hey guys, I played this cool pokemon game and scored {{score}} points! Check it out- https%3A//protected-everglades-37536.herokuapp.com/game"><img src="/static/twitter.png" width=50px></a>
+			<a target='_blank' href="https://twitter.com/home?status=Hey guys, I played this cool pokemon game and scored {{score}} points! Check it out- https%3A//fast-fjord-25866.herokuapp.com/game"><img src="/static/twitter.png" width=50px></a>
 			<br>
-			<a target='_blank' id='whatsapp' href='whatsapp://send?text=Hey mate! Check out this pokemon game! I scored {{score}} points! Challenge accepted? https%3A//protected-everglades-37536.herokuapp.com/game'><img src="/static/whatsapp.png" width=50px></a>
+			<a target='_blank' id='whatsapp' href='whatsapp://send?text=Hey mate! Check out this pokemon game! I scored {{score}} points! Challenge accepted? https%3A//fast-fjord-25866.herokuapp.com/game'><img src="/static/whatsapp.png" width=50px></a>
 			<br>
-			<a target='_blank' href='mailto:singh_navjot75@yahoo.ca?&cc=singh.navjot12@gmail.com&subject=Some Error Mayne. Look after it.&body=Dikkat%20hai%20be%20yahan-https%3A//protected-everglades-37536.herokuapp.com/pokemon/{{pokemon.id}}/{{pokemon.pokemon_name}}%0ATheek%20kar%20isko.'><button class='btn btn-warning'>Report Bug.</button></a>
+			<a target='_blank' href='mailto:singh_navjot75@yahoo.ca?&cc=singh.navjot12@gmail.com&subject=Some Error Mayne. Look after it.&body=Dikkat%20hai%20be%20yahan-https%3A//fast-fjord-25866.herokuapp.com/game%0ATheek%20kar%20isko.'><button class='btn btn-warning'>Report Bug.</button></a>
 		</div>
 		
   	</form>
@@ -74,7 +74,7 @@
 		function check(){
 			var userAnswer = $('#answer').val();
 			userAnswer = userAnswer.toLowerCase();
-			correctAnswer = "{{pokemon.pokemon_name}}".toLowerCase();
+			var correctAnswer = "{{pokemon.pokemon_name}}".toLowerCase();
 
 			if (userAnswer == correctAnswer && parseInt($('#countdown').text(),10)>0){
 				document.getElementById('ans').value = 1
