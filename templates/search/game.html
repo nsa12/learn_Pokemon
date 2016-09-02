@@ -28,14 +28,14 @@
 	<meta property="og:site_name" content="http://fast-fjord-25866.herokuapp.com/"/> 
 
 	<meta property="og:url" content="fast-fjord-25866.herokuapp.com/game" />
-	<meta property="article:author" content="wwww.facebook.com/Navjot.Singh.12" />
-	<meta property="article:publisher" content="wwww.facebook.com/Navjot.Singh.12"/>
+	<meta property="article:author" content="www.facebook.com/Navjot.Singh.12" />
+	<meta property="article:publisher" content="www.facebook.com/Navjot.Singh.12"/>
 
 	<meta name="twitter:card" content=" Pokemon Game! " />
 	<meta name="twitter:site" content=" @zing521 " />
 	<meta name="twitter:title" content=" Pokemon Guess " />
     <meta name="twitter:text" content=" Game about guessing pokemon under 15 seconds! " />
-	<meta name="twitter:description" content=" Game about guessing the name of the pokemon by it's image under 45 seconds! " />
+	<meta name="twitter:description" content=" Game about guessing the name of the pokemon by it's image under 15 seconds! " />
 	<meta name="twitter:image" content="{{pokemon.pokemon_image}}" />
 
 {% endblock %}
@@ -71,7 +71,7 @@
 			
 			<a target='_blank' id='whatsapp' href='whatsapp://send?text=Hey mate! Check out this pokemon game! I scored {{score}} points! Challenge accepted? https%3A//fast-fjord-25866.herokuapp.com/game'><img src="http://icons.iconarchive.com/icons/dtafalonso/android-l/512/WhatsApp-icon.png" width=75px style="margin-right: 10px;"></a>
 			
-			<a target='_blank' href='mailto:singh_navjot75@yahoo.ca?&cc=singh.navjot12@gmail.com&subject=Some Error Mayne. Look after it.&body=Dikkat%20hai%20be%20yahan-https%3A//fast-fjord-25866.herokuapp.com/game%0ATheek%20kar%20isko.'><button class='btn btn-warning' style="height: 70px; font-size: 150%; color: black; ">Report Bug.</button></a>
+			<a target='_blank' href='mailto:singh_navjot75@yahoo.ca?&cc=singh.navjot12@gmail.com&subject=Some Error Mayne. Look after it.&body=Dikkat%20hai%20be%20yahan-https%3A//fast-fjord-25866.herokuapp.com/game%0ATheek%20kar%20isko.'><button class='btn btn-warning' style="height: 70px; font-size: 150%; color: black; "><i>Report Bug.</i></button></a>
 		</div>
 		
   	</form>
@@ -117,7 +117,7 @@
 				document.getElementById('ans').value = 1;
 				var temp = {{score}} + 1 + parseInt($('#countdown').text(),10);
 				document.getElementById('score').value = temp;
-				alert('Correct Answer! Score: ' + temp);
+				//alert('Correct Answer! Score: ' + temp);
 				document.forms['gameboy'].submit();
 			}
 			else if (parseInt($('#countdown').text(),10) == 0 && document.getElementById('ans').value == 1){
