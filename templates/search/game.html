@@ -73,6 +73,15 @@
 
 	<script type="text/javascript">
 		
+	$(document).ready(function(){			//This function is called as soon as the page is loaded.
+			//alert(navigator.userAgent);
+			if (navigator.userAgent.match('Android') == null) {
+				//user is on browser
+				$('#whatsapp').hide();
+				//document.getElementById('whatsapp').style.display = 'none';
+			}
+		});
+
 		$(function() {
 		    var cd = $('#countdown');
 		    var c = parseInt(cd.text(), 10);
