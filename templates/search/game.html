@@ -69,15 +69,35 @@
 
 {% block scripts %}
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 	<script type="text/javascript">
 		
+		$(function() {
+		    var cd = $('#countdown');
+		    var c = parseInt(cd.text(), 10);
+		    var interv = setInterval(function() {
+		        c--;
+		        cd.html(c);
+		        if (document.getElementById('ans').value == 0)
+		        {
+					clearInterval(interv);
+		        }
+		        if (c == 0) {
+		            //window.location.reload(false);
+		            check();
+		            clearInterval(interv);
+		        }
+		    }, 1000);
+		});
+
 		function check(){
 			var userAnswer = $('#answer').val();
 			userAnswer = userAnswer.toLowerCase();
 			var correctAnswer = "{{pokemon.pokemon_name}}".toLowerCase();
 
 			if (userAnswer == correctAnswer && parseInt($('#countdown').text(),10)>0){
-				document.getElementById('ans').value = 1
+				document.getElementById('ans').value = 1;
 				var temp = {{score}} + 1 + parseInt($('#countdown').text(),10);
 				document.getElementById('score').value = temp;
 				alert('Correct Answer! Score: ' + temp);
@@ -91,23 +111,9 @@
 				document.getElementById('ans').value = 0;
 				//document.getElementById('score').value = 0;
 				alert('Incorrect Answer! The correct answer was {{pokemon.pokemon_name}}');
-				window.stop();
+				// window.stop();
 			}
 		};
-
-		$(function() {
-		    var cd = $('#countdown');
-		    var c = parseInt(cd.text(), 10);
-		    var interv = setInterval(function() {
-		        c--;
-		        cd.html(c);
-		        if (c == 0) {
-		            //window.location.reload(false);
-		            check();
-		            clearInterval(interv);
-		        }
-		    }, 1000);
-		});
 
 	</script>
 
