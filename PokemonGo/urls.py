@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     url(r'^p/(?P<page_id>\d+)', 'search.views.index2', name='index2'),
     url(r'^pokemon/(?P<pokemon_id>\d+)/(?P<pokemon_name>[\w\-]+)', 'search.views.description', name='description'),
     url(r'^pokemon/(?P<pokemon_id>\d+)/', 'search.views.short_url', name='short_url'),
-    url(r'^game$', 'search.views.game', name='gameboy'),
+    url(r'^game', 'search.views.game', name='gameboy'),
 )
